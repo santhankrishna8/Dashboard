@@ -1,10 +1,12 @@
 import { useId, type ReactNode } from "react";
-import { Activity, Bookmark, CircleDollarSign, Clock, CloudSun, Cpu, FileText, GitBranch, GitPullRequest, Lightbulb, Link2, Newspaper, NotebookPen, Radar, Radio, RefreshCw, Repeat2, Sparkles, Sunrise, Timer, Triangle, Trophy, type LucideIcon } from "lucide-react";
+import { Activity, Bookmark, CalendarClock, CircleDollarSign, Clock, CloudSun, GitBranch, GitPullRequest, Lightbulb, Link2, ListChecks, Newspaper, NotebookPen, Radar, Radio, RefreshCw, Repeat2, Sparkles, Sunrise, Timer, Triangle, Trophy, type LucideIcon } from "lucide-react";
 import type { Feed } from "../lib/feed";
 import { ago } from "../lib/fmt";
 
 /** One glyph per card so a column reads at a glance; same set and stroke as every other icon here. */
 const ICONS: [string, LucideIcon][] = [
+  ["Tasks", ListChecks],
+  ["Deadlines", CalendarClock],
   ["Today", Sunrise],
   ["Your GitHub", GitPullRequest],
   ["Vercel", Triangle],
@@ -12,18 +14,14 @@ const ICONS: [string, LucideIcon][] = [
   ["Scratchpad", NotebookPen],
   ["Token spend", Activity],
   ["AI news", Newspaper],
-  ["Hacker News", Newspaper],
   ["Learn", Sparkles],
   ["Try building", Lightbulb],
   ["Repos", GitBranch],
-  ["Trending models", Cpu],
-  ["Papers", FileText],
   ["Saved", Bookmark],
   ["Focus", Timer],
   ["AI model radar", Radar],
   ["Cricket", Trophy],
   ["Service status", Radio],
-  ["Gold", CircleDollarSign],
   ["Currencies", CircleDollarSign],
   ["Weather", CloudSun],
   ["World clocks", Clock],

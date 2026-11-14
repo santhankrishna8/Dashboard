@@ -10,8 +10,8 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-It works with no keys at all: news comes from Hacker News, repos from GitHub, models and papers from Hugging Face,
-new-model releases from OpenRouter, cricket from ESPNcricinfo, service status from each provider's status page, gold from Yahoo (through a proxy).
+It works with no keys at all: news comes from Hacker News, repos from GitHub,
+new-model releases from OpenRouter, cricket from ESPNcricinfo, service status from each provider's status page.
 Saves go to this browser.
 
 Weather uses your location: the browser asks once on first visit. Allow it and the card follows you; say no and it
@@ -60,9 +60,9 @@ Without it, saves, layout and settings live in each browser instead of syncing.
 
 Three desks, side by side (Today, Build, Pulse; slide with `1` `2` `3`, the arrows, or a swipe):
 
-- **Today:** a brief assembled from everything else (top stories, the lesson, a repo, an idea, the weather and markets), your GitHub pull requests, quiz questions you got wrong coming back on a schedule, a scratchpad, a token meter and a focus timer.
-- **Build:** AI news (filter by topic, hide what you don't want, a dot marks what's new since your last visit), Hacker News, the daily lesson, ideas with a "Plan it" button, repos, models, papers and your saved items.
-- **Pulse:** an AI model radar (the newest models from the main labs with price and context window), live cricket scores and fixtures, live status of GitHub, npm, Vercel, Cloudflare, Claude and OpenAI, currencies, gold, weather and air quality, world clocks and your links. The pencil on currencies and clocks lets you choose what they track.
+- **Today:** your tasks (unfinished ones roll over to tomorrow), a brief assembled from everything else (top stories, the lesson, a repo, an idea, the weather and markets), your deadlines counting down, GitHub pull requests, quiz questions you got wrong coming back on a schedule, a scratchpad, a token meter and a focus timer with a 7-day chart of the sessions you finished.
+- **Build:** AI news (filter by topic, hide what you don't want, a dot marks what's new since your last visit), the daily lesson, ideas with a "Plan it" button, repos and your saved items.
+- **Pulse:** an AI model radar (the newest models from the main labs with price and context window), live cricket scores and fixtures, live status of GitHub, npm, Vercel, Cloudflare, Claude and OpenAI, currencies, weather and air quality, world clocks and your links. The pencil on currencies and clocks lets you choose what they track.
 
 ## Signing in syncs your settings
 

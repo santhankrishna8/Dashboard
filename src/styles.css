@@ -262,6 +262,8 @@ a.title:hover { color: var(--accent-ink); text-decoration: underline; text-under
 .weather { display: flex; flex-direction: column; gap: 10px; flex: 1 0 auto; }
 .now { display: flex; align-items: center; gap: 12px; }
 .wx-icon { flex: none; color: var(--accent-ink); }
+.wx-place { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; color: var(--muted); font-size: 12.5px; min-width: 0; }
+.wx-place svg { flex: none; }
 @container (max-width: 270px) { .wx-icon { display: none; } }
 .temp { font: 500 clamp(34px, 7cqh, 54px)/1 var(--font-num); letter-spacing: -0.05em; }
 .now > div { display: grid; font-size: 13px; }
@@ -408,10 +410,11 @@ a.title:hover { color: var(--accent-ink); text-decoration: underline; text-under
 
 .icon[aria-pressed="true"] { color: var(--accent-ink); }
 
-/* The incoming desk eases up from slightly smaller and dimmer as it slides in. */
+/* The incoming desk fades up as it slides in. Fade only: scroll-snap aligns to a desk's *transformed* box, so scaling it
+   here made the snap land ~26px past the desk edge and slid the first card under the edge arrow. */
 @supports (animation-timeline: view(inline)) {
   .desk { animation: desk-depth linear both; animation-timeline: view(inline); animation-range: entry 0% entry 100%; }
-  @keyframes desk-depth { from { opacity: 0.35; transform: scale(0.965); } to { opacity: 1; transform: scale(1); } }
+  @keyframes desk-depth { from { opacity: 0.35; } to { opacity: 1; } }
 }
 @media (max-width: 899px) { .desk { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .desk, .spark, .paged-box > * { animation: none !important; } .needle, .aqi-scale b, .hand.sec { transition: none !important; } }
@@ -538,3 +541,41 @@ a.plain:hover strong, a.plain:hover { color: var(--accent-ink); }
 .gh-stat { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; padding-bottom: 8px; flex: none; font-size: 13px; }
 .gh-stat strong { font-size: clamp(26px, 8cqh, 36px); line-height: 1; letter-spacing: -0.04em; }
 .gh-stat .muted { font-size: 12px; }
+
+/* Tasks */
+.task-add { display: flex; align-items: center; gap: 6px; padding-bottom: 8px; flex: none; }
+.task-add input { flex: 1; min-width: 0; height: 34px; padding: 0 10px; border-radius: var(--r-ctl); border: 1px solid var(--line-strong); background: var(--bg); font-size: 14px; }
+.task { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 10px; border-top: 1px solid var(--line); }
+.paged-box > .task:first-child, .paged-box > .dl:first-child { border-top: 0; }
+.tick { width: 18px; height: 18px; display: grid; place-items: center; padding: 0; border: 1.5px solid var(--line-strong); border-radius: 5px; background: none; color: var(--on-accent); transition: background-color 0.15s, border-color 0.15s; }
+.tick:hover { border-color: var(--accent); }
+.task.done .tick { background: var(--accent); border-color: var(--accent); }
+.task-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task.done .task-t { color: var(--muted); text-decoration: line-through; }
+.task-x { opacity: 0; }
+.task:hover .task-x, .task-x:focus-visible { opacity: 1; }
+@media (pointer: coarse) { .task-x { opacity: 0.6; } }
+
+/* Deadlines */
+.dl-add { display: flex; align-items: center; gap: 6px; padding-bottom: 8px; flex: none; }
+.dl-add input { height: 34px; padding: 0 10px; border-radius: var(--r-ctl); border: 1px solid var(--line-strong); background: var(--bg); font-size: 14px; min-width: 0; }
+.dl-add input:first-child { flex: 1 1 90px; }
+.dl-add input[type="date"] { flex: 0 1 138px; font-size: 13px; }
+.dl { display: grid; grid-template-columns: minmax(0, 1fr) auto 86px auto; align-items: center; gap: 10px; border-top: 1px solid var(--line); }
+.dl-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dl-d { font-size: 12px; white-space: nowrap; }
+.dl-n { text-align: right; font-size: 13px; white-space: nowrap; }
+.dl.soon .dl-n { color: var(--accent-ink); font-weight: 600; }
+.dl.past .dl-t, .dl.past .dl-n { color: var(--muted); }
+@container (max-width: 330px) { .dl { grid-template-columns: minmax(0, 1fr) 80px auto; } .dl-d { display: none; } }
+
+/* Weekly focus bars */
+.fweek { display: flex; align-items: flex-end; gap: 6px; width: min(100%, 220px); height: 34px; margin-top: 2px; }
+.fweek > span { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 2px; }
+.fweek i { display: block; width: 100%; max-width: 18px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 55%, transparent); }
+.fweek .today i { background: var(--accent); }
+.fweek i[data-empty] { background: var(--surface-2); }
+.fweek small { font-size: 10px; line-height: 1; color: var(--muted); }
+.focus:has(.fweek) { gap: 6px; }
+.focus:has(.fweek) .ring { width: clamp(60px, 22cqh, 112px); }
+@container (max-height: 175px) { .fweek { display: none; } }

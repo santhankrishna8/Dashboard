@@ -191,7 +191,6 @@ export function WeatherWidget() {
   return (
     <Card
       title="Weather and air"
-      meta={feed.data?.place}
       actions={
         <>
           {editing ? (
@@ -222,6 +221,7 @@ export function WeatherWidget() {
           const b = aqi === null ? null : band(Math.round(aqi));
           return (
             <div className="weather">
+              <p className="wx-place" title={w.place}><MapPin size={13} strokeWidth={1.75} aria-hidden="true" />{w.place}</p>
               <div className="now">
                 {(() => {
                   const Icon = icon(w.current.weather_code);

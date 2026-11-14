@@ -5,7 +5,10 @@ import { useCallback, useRef, useSyncExternalStore } from "react";
  * it was set on (feed caches, "last seen" markers, the location prompt flag).
  */
 export const SYNCED = [
-  "sd:layout:v4",
+  "sd:layout:v5",
+  "sd:tasks",
+  "sd:deadlines",
+  "sd:focuslog",
   "sd:links",
   "sd:city",
   "sd:loc",

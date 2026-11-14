@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import { NewsWidget } from "../widgets/News";
-import { ReposWidget, ModelsWidget, PapersWidget, HNWidget } from "../widgets/Discover";
+import { ReposWidget } from "../widgets/Discover";
 import { ClocksWidget } from "../widgets/Clocks";
 import { WeatherWidget } from "../widgets/Weather";
 import { CurrencyWidget } from "../widgets/Currency";
@@ -10,7 +10,8 @@ import { StatusWidget } from "../widgets/Status";
 import { LessonWidget, IdeasWidget } from "../widgets/Learn";
 import { FocusWidget } from "../widgets/Focus";
 import { SavedWidget } from "../widgets/SavedVault";
-import { MetalsWidget } from "../widgets/Metals";
+import { TasksWidget } from "../widgets/Tasks";
+import { DeadlinesWidget } from "../widgets/Deadlines";
 import { LinksWidget } from "../widgets/Links";
 import { BriefWidget } from "../widgets/Brief";
 import { PadWidget } from "../widgets/Pad";
@@ -20,6 +21,8 @@ import { VercelWidget } from "../widgets/Vercel";
 import { ReviewWidget } from "../widgets/Review";
 
 export const WIDGETS = {
+  tasks: { name: "Tasks", Comp: TasksWidget },
+  deadlines: { name: "Deadlines", Comp: DeadlinesWidget },
   brief: { name: "Today's brief", Comp: BriefWidget },
   github: { name: "Your GitHub", Comp: GithubWidget },
   vercel: { name: "Vercel projects", Comp: VercelWidget },
@@ -28,17 +31,13 @@ export const WIDGETS = {
   spend: { name: "Token spend", Comp: SpendWidget },
   focus: { name: "Focus timer", Comp: FocusWidget },
   news: { name: "AI news", Comp: NewsWidget },
-  hn: { name: "Hacker News", Comp: HNWidget },
   lesson: { name: "Learn one thing", Comp: LessonWidget },
   ideas: { name: "Try building this", Comp: IdeasWidget },
   repos: { name: "Repos worth a look", Comp: ReposWidget },
-  models: { name: "Trending models", Comp: ModelsWidget },
-  papers: { name: "Papers of the day", Comp: PapersWidget },
   saved: { name: "Saved", Comp: SavedWidget },
   radar: { name: "AI model radar", Comp: RadarWidget },
   cricket: { name: "Cricket", Comp: CricketWidget },
   status: { name: "Service status", Comp: StatusWidget },
-  metals: { name: "Gold, silver, copper", Comp: MetalsWidget },
   currency: { name: "Currencies", Comp: CurrencyWidget },
   weather: { name: "Weather and air", Comp: WeatherWidget },
   clocks: { name: "World clocks", Comp: ClocksWidget },
@@ -66,19 +65,18 @@ export const DESKS = [
     id: "today",
     name: "Today",
     cols: [
-      col(4.5, ["brief", 12]),
+      col(4.5, ["tasks", 4.5], ["brief", 4.5], ["pad", 3]),
       col(3.5, ["github", 4], ["vercel", 4], ["review", 4]),
-      col(4, ["pad", 3.5], ["spend", 4.5], ["focus", 4]),
+      col(4, ["deadlines", 4], ["spend", 3.5], ["focus", 4.5]),
     ],
   },
   {
     id: "build",
     name: "Build",
     cols: [
-      col(3.5, ["news", 7.5], ["hn", 4.5]),
-      col(3.25, ["lesson", 8], ["ideas", 4]),
-      col(2.75, ["repos", 6], ["models", 6]),
-      col(2.5, ["papers", 6], ["saved", 6]),
+      col(4, ["news", 12]),
+      col(3.75, ["lesson", 8], ["ideas", 4]),
+      col(3.25, ["repos", 6], ["saved", 6]),
     ],
   },
   {
@@ -86,8 +84,8 @@ export const DESKS = [
     name: "Pulse",
     cols: [
       col(3.5, ["radar", 7], ["currency", 5]),
-      col(3.5, ["cricket", 7], ["metals", 5]),
-      col(2.5, ["weather", 7], ["status", 5]),
+      col(3.5, ["cricket", 12]),
+      col(2.5, ["weather", 8], ["status", 4]),
       col(2.5, ["clocks", 6.5], ["links", 5.5]),
     ],
   },

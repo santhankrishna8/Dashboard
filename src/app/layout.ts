@@ -13,7 +13,7 @@ export interface Pos {
 export type Target = Pos | { d: number; g: number };
 export type Source = { from: Pos } | { id: WidgetId };
 
-const KEY = "sd:layout:v4";
+const KEY = "sd:layout:v5";
 const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
 const defaults = (): Layout => DESKS.map((d) => d.cols.map((c) => ({ w: c.w, cards: c.cards.map((k) => ({ ...k })) })));
 
@@ -24,9 +24,6 @@ const normalize = (l: Layout): Layout =>
     return cols.length > 0 ? cols : [{ w: 3, cards: [] }];
   });
 
-/** Widgets that were replaced keep their slot in saved layouts instead of leaving a hole. */
-const RENAMED: Record<string, string> = { npm: "radar", watch: "cricket" };
-
 const num = (v: unknown, fallback: number, lo: number, hi: number) => (typeof v === "number" && Number.isFinite(v) ? clamp(v, lo, hi) : fallback);
 
 function cols(raw: unknown, seen: Set<WidgetId>): Col[] | null {
@@ -34,7 +31,7 @@ function cols(raw: unknown, seen: Set<WidgetId>): Col[] | null {
   return raw.slice(0, MAX_COLS).map((c: { w?: unknown; cards?: unknown } | null) => ({
     w: num(c?.w, 3, 0.5, 12),
     cards: (Array.isArray(c?.cards) ? c.cards : []).flatMap((k: { id?: unknown; h?: unknown } | null) => {
-      const id = typeof k?.id === "string" ? (RENAMED[k.id] ?? k.id) : k?.id;
+      const id = k?.id;
       if (!isWidgetId(id) || seen.has(id)) return [];
       seen.add(id);
       return [{ id, h: num(k?.h, 4, 0.5, 24) }];
@@ -42,18 +39,10 @@ function cols(raw: unknown, seen: Set<WidgetId>): Col[] | null {
   }));
 }
 
-/** Stored layouts are keyed by desk id, so adding a desk never disturbs the others. The old two-desk format is migrated. */
+/** Stored layouts are keyed by desk id, so adding a desk never disturbs the others. */
 function parse(stored: unknown): Layout {
   let byId: Record<string, unknown> = {};
   if (stored && typeof stored === "object" && !Array.isArray(stored)) byId = stored as Record<string, unknown>;
-  else {
-    try {
-      const v3: unknown = JSON.parse(localStorage.getItem("sd:layout:v3") ?? "null");
-      if (Array.isArray(v3)) byId = { build: v3[0], world: v3[1] };
-    } catch {
-      /* no old layout */
-    }
-  }
   const seen = new Set<WidgetId>();
   const base = defaults();
   return normalize(DESKS.map((d, i) => cols(byId[d.id], seen) ?? (base[i] as Col[]).filter((c) => (c.cards = c.cards.filter((k) => !seen.has(k.id))).length > 0).map((c) => (c.cards.forEach((k) => seen.add(k.id)), c))));
