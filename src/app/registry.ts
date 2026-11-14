@@ -4,8 +4,8 @@ import { ReposWidget, ModelsWidget, PapersWidget, HNWidget } from "../widgets/Di
 import { ClocksWidget } from "../widgets/Clocks";
 import { WeatherWidget } from "../widgets/Weather";
 import { CurrencyWidget } from "../widgets/Currency";
-import { NpmWidget } from "../widgets/Npm";
-import { RepoWatchWidget } from "../widgets/RepoWatch";
+import { RadarWidget } from "../widgets/Radar";
+import { CricketWidget } from "../widgets/Cricket";
 import { StatusWidget } from "../widgets/Status";
 import { LessonWidget, IdeasWidget } from "../widgets/Learn";
 import { FocusWidget } from "../widgets/Focus";
@@ -35,8 +35,8 @@ export const WIDGETS = {
   models: { name: "Trending models", Comp: ModelsWidget },
   papers: { name: "Papers of the day", Comp: PapersWidget },
   saved: { name: "Saved", Comp: SavedWidget },
-  npm: { name: "Package pulse", Comp: NpmWidget },
-  watch: { name: "Repo watch", Comp: RepoWatchWidget },
+  radar: { name: "AI model radar", Comp: RadarWidget },
+  cricket: { name: "Cricket", Comp: CricketWidget },
   status: { name: "Service status", Comp: StatusWidget },
   metals: { name: "Gold, silver, copper", Comp: MetalsWidget },
   currency: { name: "Currencies", Comp: CurrencyWidget },
@@ -85,8 +85,8 @@ export const DESKS = [
     id: "pulse",
     name: "Pulse",
     cols: [
-      col(3.5, ["npm", 7], ["currency", 5]),
-      col(3.5, ["watch", 7], ["metals", 5]),
+      col(3.5, ["radar", 7], ["currency", 5]),
+      col(3.5, ["cricket", 7], ["metals", 5]),
       col(2.5, ["weather", 7], ["status", 5]),
       col(2.5, ["clocks", 6.5], ["links", 5.5]),
     ],

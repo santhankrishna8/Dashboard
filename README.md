@@ -11,7 +11,7 @@ npm run dev        # http://localhost:5173
 ```
 
 It works with no keys at all: news comes from Hacker News, repos from GitHub, models and papers from Hugging Face,
-package downloads from npm, service status from each provider's status page, gold from Yahoo (through a proxy).
+new-model releases from OpenRouter, cricket from ESPNcricinfo, service status from each provider's status page, gold from Yahoo (through a proxy).
 Saves go to this browser.
 
 Weather uses your location: the browser asks once on first visit. Allow it and the card follows you; say no and it
@@ -62,7 +62,7 @@ Three desks, side by side (Today, Build, Pulse; slide with `1` `2` `3`, the arro
 
 - **Today:** a brief assembled from everything else (top stories, the lesson, a repo, an idea, the weather and markets), your GitHub pull requests, quiz questions you got wrong coming back on a schedule, a scratchpad, a token meter and a focus timer.
 - **Build:** AI news (filter by topic, hide what you don't want, a dot marks what's new since your last visit), Hacker News, the daily lesson, ideas with a "Plan it" button, repos, models, papers and your saved items.
-- **Pulse:** npm weekly downloads for the packages you pick, stars and latest releases for repos you follow, live status of GitHub, npm, Vercel, Cloudflare, Claude and OpenAI, currencies, gold, weather and air quality, world clocks and your links. The pencil on package pulse, repo watch, currencies and clocks lets you choose what they track.
+- **Pulse:** an AI model radar (the newest models from the main labs with price and context window), live cricket scores and fixtures, live status of GitHub, npm, Vercel, Cloudflare, Claude and OpenAI, currencies, gold, weather and air quality, world clocks and your links. The pencil on currencies and clocks lets you choose what they track.
 
 ## Signing in syncs your settings
 

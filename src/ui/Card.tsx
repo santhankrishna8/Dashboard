@@ -1,5 +1,5 @@
 import { useId, type ReactNode } from "react";
-import { Activity, Bookmark, CircleDollarSign, Clock, CloudSun, Cpu, Eye, FileText, GitBranch, GitPullRequest, Lightbulb, Link2, Newspaper, NotebookPen, Package, Radio, RefreshCw, Repeat2, Sparkles, Sunrise, Timer, Triangle, type LucideIcon } from "lucide-react";
+import { Activity, Bookmark, CircleDollarSign, Clock, CloudSun, Cpu, FileText, GitBranch, GitPullRequest, Lightbulb, Link2, Newspaper, NotebookPen, Radar, Radio, RefreshCw, Repeat2, Sparkles, Sunrise, Timer, Triangle, Trophy, type LucideIcon } from "lucide-react";
 import type { Feed } from "../lib/feed";
 import { ago } from "../lib/fmt";
 
@@ -20,8 +20,8 @@ const ICONS: [string, LucideIcon][] = [
   ["Papers", FileText],
   ["Saved", Bookmark],
   ["Focus", Timer],
-  ["Package pulse", Package],
-  ["Repo watch", Eye],
+  ["AI model radar", Radar],
+  ["Cricket", Trophy],
   ["Service status", Radio],
   ["Gold", CircleDollarSign],
   ["Currencies", CircleDollarSign],

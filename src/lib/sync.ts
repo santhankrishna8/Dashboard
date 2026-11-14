@@ -10,8 +10,6 @@ export const SYNCED = [
   "sd:city",
   "sd:loc",
   "sd:streak",
-  "sd:watch:npm",
-  "sd:watch:repos",
   "sd:watch:fx",
   "sd:watch:zones",
   "sd:misses",

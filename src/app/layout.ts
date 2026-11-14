@@ -24,6 +24,9 @@ const normalize = (l: Layout): Layout =>
     return cols.length > 0 ? cols : [{ w: 3, cards: [] }];
   });
 
+/** Widgets that were replaced keep their slot in saved layouts instead of leaving a hole. */
+const RENAMED: Record<string, string> = { npm: "radar", watch: "cricket" };
+
 const num = (v: unknown, fallback: number, lo: number, hi: number) => (typeof v === "number" && Number.isFinite(v) ? clamp(v, lo, hi) : fallback);
 
 function cols(raw: unknown, seen: Set<WidgetId>): Col[] | null {
@@ -31,7 +34,7 @@ function cols(raw: unknown, seen: Set<WidgetId>): Col[] | null {
   return raw.slice(0, MAX_COLS).map((c: { w?: unknown; cards?: unknown } | null) => ({
     w: num(c?.w, 3, 0.5, 12),
     cards: (Array.isArray(c?.cards) ? c.cards : []).flatMap((k: { id?: unknown; h?: unknown } | null) => {
-      const id = k?.id;
+      const id = typeof k?.id === "string" ? (RENAMED[k.id] ?? k.id) : k?.id;
       if (!isWidgetId(id) || seen.has(id)) return [];
       seen.add(id);
       return [{ id, h: num(k?.h, 4, 0.5, 24) }];
